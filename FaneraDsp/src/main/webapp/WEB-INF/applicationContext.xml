@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--#Added-->
+
+    <import resource="app-config-mvc.xml"/>
+    <import resource="app-config-data.xml"/>
+    <import resource="app-config-security.xml"/>
+
+    <context:component-scan base-package="woods.admin.*"/>
+
+
+
+    <context:property-placeholder location="/WEB-INF/database.properties"/>
+
+
+     <!--           IPhone                         -->   
+      <bean id="dataSourceIphone" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+          p:driverClassName="com.mysql.jdbc.Driver"
+          p:url="jdbc:mysql://localhost:3306/phones"
+          p:connectionProperties="characterEncoding=utf8"
+          p:username="root"
+          p:password=""  />
+
+
+    <aop:aspectj-autoproxy/>
+
+    <bean id="iphoneJDBCTemplate" class="woods.phone.iphone.IphoneJDBCTemplate">
+        <property name="dataSource"  ref="dataSourceIphone" />    
+    </bean>
+
+    <bean id="faneraJDBCTemplate" class="woods.phone.fanera.FaneraJDBCTemplate">
+        <property name="dataSource"  ref="dataSourceIphone" />
+    </bean>
+  
+ 
+
+
+
+    
+</beans>
+
+

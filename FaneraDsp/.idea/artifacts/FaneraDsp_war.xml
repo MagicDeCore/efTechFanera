@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="FaneraDsp:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="FaneraApp-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="FaneraDsp:war exploded" />
+    </root>
+  </artifact>
+</component>
